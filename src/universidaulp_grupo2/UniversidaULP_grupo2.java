@@ -7,6 +7,7 @@ package universidaulp_grupo2;
 
 //import AccesoDatos.Conexion;
 import java.sql.Connection;
+import universidaulp_grupo2.AccesoADatos.Conexion;
 
 /**
  *
@@ -20,7 +21,7 @@ public class UniversidaULP_grupo2 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-      // Connection con = Conexion.getcConexion();
+       Connection connection = Conexion.getConexion();
        
     }
     

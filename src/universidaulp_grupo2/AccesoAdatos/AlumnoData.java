@@ -15,17 +15,17 @@ import universidaulp_grupo2.Entidades.Alumno;
  * @author Javier
  */
 public class AlumnoData {
-    private Connection con = null;
+    private Connection connection = null;
     
     public AlumnoData(){
-        con = Conexion.getConexion();
+        connection = Conexion.getConexion();
     }
     
     public boolean guardarAlumno(Alumno alumno){
         boolean flag=false;
         String sql = "INSERT INTO alumno (dni, apellido, nombre, fechaNacimiento, estado) VALUES (?, ?, ?, ?, ?)";
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
