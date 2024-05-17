@@ -22,7 +22,7 @@ public class Alumno {
     public Alumno() {
     }
 
-    public Alumno(int idAlumno, int dni, String apellido, String nombre, LocalDate fechaN, boolean activo) {
+    public Alumno(int idAlumno, int dni, String apellido, String nombre, LocalDate fechaN, boolean estado) {
         this.idAlumno = idAlumno;
         this.dni = dni;
         this.apellido = apellido;
@@ -31,7 +31,7 @@ public class Alumno {
         this.estado = estado;
     }
 
-    public Alumno(int dni, String apellido, String nombre, LocalDate fechaN, boolean activo) {
+    public Alumno(int dni, String apellido, String nombre, LocalDate fechaN, boolean estado) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -84,7 +84,7 @@ public class Alumno {
     }
 
     public void setEstado(boolean activo) {
-        this.estado = activo;
+        this.estado = estado;
     }
 
     @Override
