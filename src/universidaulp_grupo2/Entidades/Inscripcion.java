@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entidades;
+package universidaulp_grupo2.Entidades;
+
+import universidaulp_grupo2.Entidades.Materia;
+import universidaulp_grupo2.Entidades.Alumno;
 
 /**
  *
@@ -14,7 +17,7 @@ public class Inscripcion {
     private int idInscripcion;
     private Alumno alumno;
     private Materia materia;
-    private int nota;
+    private double nota;
     
     //Constructor vacio
     public Inscripcion(){
@@ -50,7 +53,7 @@ public class Inscripcion {
     public Materia getMateria(){
         return materia;
     }
-    public int getNota(){
+    public double getNota(){
         return nota;
     }
     

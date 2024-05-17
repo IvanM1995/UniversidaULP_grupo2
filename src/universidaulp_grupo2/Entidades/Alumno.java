@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entidades;
+package universidaulp_grupo2.Entidades;
 
 import java.time.LocalDate;
 
