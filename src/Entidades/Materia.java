@@ -18,7 +18,6 @@ public class Materia {
       public Materia() {
     }
 
-
     public Materia(int idMateria, String nombre, int anioMateria, boolean activo) {
         this.idMateria = idMateria;
         this.nombre = nombre;
