@@ -85,4 +85,12 @@ public class Inscripcion {
         public void setIdMateria(int idMateria){
         materia.setIdMateria(idMateria);
     }
+
+    @Override
+    public String toString() {
+        String inscrip = idInscripcion+ " " + alumno.getApellido() +" " + alumno.getNombre() +" " +  materia.getNombre();
+        return inscrip;
+    }
+        
+        
 }
