@@ -5,6 +5,9 @@
  */
 package universidaulp_grupo2;
 
+import AccesoDatos.Conexion;
+import java.sql.Connection;
+
 /**
  *
  * @author Ivan
@@ -16,6 +19,9 @@ public class UniversidaULP_grupo2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+       Connection con = Conexion.getcConexion();
+       
     }
     
 }
