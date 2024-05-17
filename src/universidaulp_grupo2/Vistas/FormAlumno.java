@@ -80,7 +80,6 @@ public class FormAlumno extends javax.swing.JInternalFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("FORMULARIO ALUMNO");
 
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("BUSCAR");
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
