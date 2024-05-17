@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import universidaulp_grupo2.Entidades.Alumno;
+import universidaulp_grupo2.AccesoADatos.Conexion;
 
 /**
  *
@@ -23,13 +24,13 @@ public class AlumnoData {
     
     public boolean guardarAlumno(Alumno alumno){
         boolean flag=false;
-        String sql = "INSERT INTO alumno (dni, apellido, nombre, fechaNacimiento, estado) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO alumnos (dni, apellido, nombre, fechaN, estado) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            ps.setDate(4, Date.valueOf(alumno.getFechaNacimiento())); //De localDate a Date 
+            ps.setDate(4, Date.valueOf(alumno.getFechaN())); //De localDate a Date 
             ps.setBoolean(5, alumno.isEstado()); // if reducido
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
