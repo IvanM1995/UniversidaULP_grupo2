@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import universidaulp_grupo2.Entidades.Alumno;
+import universidaulp_grupo2.AccesoADatos.Conexion;
 
 /**
  *
@@ -25,7 +26,7 @@ public class AlumnoData {
     public boolean guardarAlumno(Alumno alumno){
         boolean flag=false;
         
-        String sql = "INSERT INTO alumno (dni, apellido, nombre, fechaNacimiento, estado) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO alumnos (dni,apellido, nombre, fechaN, estado) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, alumno.getDni());
@@ -49,4 +50,41 @@ public class AlumnoData {
         }
         return flag;
     }
+     public Alumno buscarAlumno(int id){
+        Alumno alumno = null;
+        String sql = "SELECT dni, apellido, nombre, fechaN, estado FROM alumno"
+                + "WHERE idAlumno = ? AND estado = 1";
+        PreparedStatement ps = null;
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next())
+                    {
+                       alumno = new Alumno(); 
+                       alumno.setIdAlumno(rs.getInt("idAlumno"));
+                       alumno.setDni(rs.getInt("dni"));
+                       alumno.setApellido(rs.getString("apellido"));
+                       alumno.setNombre(rs.getString("nombre"));
+                       alumno.setfechaN(rs.getDate("fechaN").toLocalDate());
+                       alumno.setEstado(true); 
+                    
+                    }
+            else{
+                JOptionPane.showMessageDialog(null, "ALumno inexistente");
+                ps.close();
+            }
+            }  catch (SQLException ex)  
+                    {
+                     JOptionPane.showMessageDialog(null,"error al acceder a la tabla ALumno" + ex.getMessage());
+                    
+                    }
+        
+            
+                    return alumno;
+                    
+             }
 }

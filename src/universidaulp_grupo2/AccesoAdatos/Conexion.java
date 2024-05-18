@@ -12,32 +12,31 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
     
-    private static final String URL ="jdbc:mariadb://localhost/";
-    private static final String BD= "universidadgp2";
+      private static final String URL = "jdbc:mariadb://localhost/";
+    private static final String BD = "universidadgp2";
     private static final String USUARIO = "root";
-    private static final String PASSWORD = "";
-    
-    private static Connection connection;
+    private static final String CONTRASEÑA = "";
+    private static  Connection con; 
 
-    private Conexion() {
-    }
-    
-    public static Connection getConexion(){
-        if(connection == null){
+    private Conexion(){}
 
-            try {
-                Class.forName("org.mariadb.jdbc.Driver"); //Cargando el Driver
+     public static Connection getConexion(){
 
-                connection = DriverManager.getConnection(URL+BD + USUARIO  + PASSWORD);
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al conectarse a la BD");
-            }catch (ClassNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, "Error al cargar los drivers");
-            }
+         if(con == null){
+             try {
+                 Class.forName("org.mariadb.jdbc.Driver");
+                 con = DriverManager.getConnection(URL + BD,USUARIO,CONTRASEÑA);
 
-        }
+                 JOptionPane.showMessageDialog(null,"Conexion establecida con exito");
 
-     return connection;
-    }    
+             } catch (ClassNotFoundException ex) {
+
+                JOptionPane.showMessageDialog(null,"Error al cargar el driver");
+             } catch (SQLException ex) {
+                 JOptionPane.showMessageDialog(null,"Error al conectarse a la Base de datos");
+             }
+         }
+         return con;
+     }
     
 }
