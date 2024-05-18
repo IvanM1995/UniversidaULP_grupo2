@@ -24,13 +24,16 @@ public class UniversidaULP_grupo2 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-       Connection connection = Conexion.getConexion();
-       
-       Connection con = Conexion.getConexion();
-       Alumno migue=new Alumno(4496454, "Augusto", "Lwil", LocalDate.of(1999, 5, 31), true);
-       AlumnoData alu = new AlumnoData();
-       alu.guardarAlumno(migue);
-       
+//        
+//       AlumnoData alum = new AlumnoData();
+//       Alumno Ivan = new Alumno(312234, "Matto" , "Ivan" , LocalDate.of(1995, 5,31),true);
+//       alum.guardarAlumno(Ivan);
+//       
+//       Connection con = Conexion.getConexion();
+//       Alumno migue=new Alumno(4496454, "Augusto", "Lwil", LocalDate.of(1999, 5, 31), true);
+//       AlumnoData alu = new AlumnoData();
+//       alu.guardarAlumno(migue);
+//       
     }
     
 }

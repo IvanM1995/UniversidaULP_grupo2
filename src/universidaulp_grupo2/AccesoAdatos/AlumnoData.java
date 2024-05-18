@@ -18,7 +18,7 @@ import universidaulp_grupo2.AccesoADatos.Conexion;
 public class AlumnoData {
     private Connection connection = null;
     
-    public AlumnoData(){
+    private AlumnoData(){
         connection = Conexion.getConexion();
     }
     
