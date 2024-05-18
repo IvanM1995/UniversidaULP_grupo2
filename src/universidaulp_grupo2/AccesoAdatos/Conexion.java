@@ -17,7 +17,14 @@ public class Conexion {
     private static final String CONTRASEÑA = "";
     private static  Connection con; 
     
+<<<<<<< Updated upstream
     private Conexion(){}
+=======
+    private static final String URL ="jdbc:mariadb://localhost/";
+    private static final String BD= "universidadgp2";
+    private static final String USUARIO = "root";
+    private static final String PASSWORD = "";
+>>>>>>> Stashed changes
     
      public static Connection getConexion(){
          
