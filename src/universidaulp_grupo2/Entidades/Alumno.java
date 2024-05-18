@@ -71,11 +71,11 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaN() {
+    public LocalDate getfechaN() {
         return fechaN;
     }
 
-    public void setFechaNacimiento(LocalDate fechaN) {
+    public void setfechaN(LocalDate fechaN) {
         this.fechaN = fechaN;
     }
 
