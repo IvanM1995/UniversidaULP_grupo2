@@ -69,15 +69,15 @@ public class UniversidaULP_grupo2 {
 //       
 //    }
       
-        AlumnoData alu = new AlumnoData();
-        for(Alumno alumno:alu.listarAlumnos()){
-            
-            System.out.println(alumno.getDni());
-            System.out.println(alumno.getApellido());
-            System.out.println(alumno.getNombre());
-            System.out.println(alumno.getfechaN());
-            System.out.println("");
-        }
+//        AlumnoData alu =  new AlumnoData();
+//        for(Alumno alumno:alu.listarAlumnos()){
+//            
+//            System.out.println(alumno.getDni());
+//            System.out.println(alumno.getApellido());
+//            System.out.println(alumno.getNombre());
+//            System.out.println(alumno.getfechaN());
+//            System.out.println("");
+//        }
   }
     
     
