@@ -22,7 +22,7 @@ public class MateriaData {
     
     public void guardarMateria(Materia materia){
         
-        String sql = "INSERT INTO materia(nombre, anio, estado) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO materia(nombre, año, estado) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             System.out.println(materia.getNombre());
@@ -43,7 +43,31 @@ public class MateriaData {
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia: "+ex.getMessage()); 
         }
+    }
     
+    public Materia buscarMateria(int id){
+        Materia materia = null;
+        String sql = "SELECT nombre, año FROM materia WHERE idMateria = ? AND estado = 1";
+        PreparedStatement ps = null;
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,id );
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                materia=new Materia();
+                materia.setIdMateria(id);
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("anio"));
+                materia.isActivo();
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe la materia");
+            }        
+        ps.close();
+        }catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia "+ex.getMessage()); 
         }
+    return materia;
+    }
   
 }//Fin class
