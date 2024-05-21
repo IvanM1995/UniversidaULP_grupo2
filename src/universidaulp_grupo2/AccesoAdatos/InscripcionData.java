@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import universidaulp_grupo2.Entidades.Alumno;
 import universidaulp_grupo2.Entidades.Inscripcion;
+import universidaulp_grupo2.Entidades.Materia;
 
 /**
  *
@@ -103,11 +104,16 @@ public class InscripcionData {
                 
                 Inscripcion insc = new Inscripcion();
                 insc.setIdInscripcion(rs.getInt("idInscripto"));
-                
+                Alumno alum = ad.buscarAlumno(rs.getInt("idAlumno"));
+                Materia mat = md.buscarMateria(rs.getInt("idMateria"));
+                insc.setAlumno(alum);
+                insc.setMateria(mat);
+                insc.setNota(rs.getInt("nota"));
+                cursadas.add(insc);
                 
             }
             
-            
+            ps.close();
             
         } catch (SQLException ex) {
             
@@ -116,7 +122,8 @@ public class InscripcionData {
             Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
         }
             
-        
+        return cursadas;
+    
         
     }
     
@@ -177,8 +184,7 @@ public class InscripcionData {
                      JOptionPane.showMessageDialog(null,"error al acceder a la tabla Alumno" + ex.getMessage());
                      
                     }
-        return alumnos;
-       
+        return alumnos;       
    }
    
    
