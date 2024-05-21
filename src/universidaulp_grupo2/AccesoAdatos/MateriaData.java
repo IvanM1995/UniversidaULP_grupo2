@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import universidaulp_grupo2.AccesoADatos.Conexion;
 import universidaulp_grupo2.Entidades.Materia;
@@ -69,5 +71,26 @@ public class MateriaData {
         }
     return materia;
     }
+    
+     public List<Materia> listarMateria(){
+        List<Materia> materias = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM materia WHERE estado = 1 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+             while (rs.next()) {
+                Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("anio"));
+                materia.setActivo(rs.getBoolean("estado"));
+                materias.add(materia);
+             }
+        ps.close();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla materia "+ex.getMessage());
+        }
+        return materias;
+        }
   
 }//Fin class
