@@ -15,7 +15,7 @@ public class Conexion {
     private static final String URL = "jdbc:mariadb://localhost/";
     private static final String BD = "universidadgp2";
     private static final String USUARIO = "root";
-    private static final String CONTRASEÑA = "";
+    private static final String PASS = "";
     private static  Connection con; 
 
     private Conexion(){}
@@ -25,7 +25,7 @@ public class Conexion {
          if(con == null){
              try {
                  Class.forName("org.mariadb.jdbc.Driver");
-                 con = DriverManager.getConnection(URL + BD,USUARIO,CONTRASEÑA);
+                 con = DriverManager.getConnection(URL + BD,USUARIO,PASS);
 
                 JOptionPane.showMessageDialog(null,"Conexion establecida con exito");
 

@@ -7,13 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import universidaulp_grupo2.AccesoADatos.Conexion;
 import universidaulp_grupo2.Entidades.Materia;
 /**
  *
  * @author Javier
  */
 public class MateriaData {
-    private Connection con = null;
+    private Connection con= null;
     
     public MateriaData(){
         con = Conexion.getConexion();
