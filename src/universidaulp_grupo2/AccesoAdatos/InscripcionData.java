@@ -5,11 +5,12 @@
  */
 package universidaulp_grupo2.AccesoAdatos;
 
-import com.mysql.jdbc.Statement;
+import con.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,7 +18,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import universidaulp_grupo2.Entidades.Alumno;
 import universidaulp_grupo2.Entidades.Inscripcion;
-import universidaulp_grupo2.Entidades.Materia;
+import universidaulp_grupo2.Entidades.Materia;import java.sql.Connection;
+import universidaulp_grupo2.AccesoADatos.Conexion;
 
 /**
  *
@@ -29,9 +31,7 @@ public class InscripcionData {
     private AlumnoData ad= new AlumnoData();
     
     public InscripcionData(){
-        
-        this.con = Conexion.getConexion();
-            
+        con= Conexion.getConexion();
         }
     
     
@@ -186,7 +186,81 @@ public class InscripcionData {
                     }
         return alumnos;       
    }
+   public List<Materia> obternerMateriasNOCursadas (int id){  
+         
+       ArrayList<Materia>materias = new ArrayList<>();
+       String sql = "SELECT  m.idMateria, m.nombre, m.año" +
+                    "FROM materias m JOIN inscripcion i on" +
+                    "( m.idMateria = i.idmateria )" +
+                    "where inscripcion.idAlumno != ?;";       
+        try {
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            
+            ResultSet rs = ps.executeQuery();
+            
+            
+            while(rs.next())
+                    {
+                     Materia materia = new Materia(); 
+                       materia.setIdMateria(rs.getInt("idMateria"));
+                       materia.setNombre(rs.getString("nombre"));
+                       materia.setAnioMateria(rs.getInt("año"));
+                       materia.setActivo(true); 
+                    
+                    
+                       materias.add(materia);
+                    }
+                        ps.close();
+            }  catch (SQLException ex)  
+                    {
+                     JOptionPane.showMessageDialog(null,"error" + ex.getMessage());
+                    
+                    }
+        
+        return materias;
+     
+     
+      }
    
-   
-   
+   public List<Materia> obternerMateriasCursadas (int id){  
+         
+       ArrayList<Materia>materias = new ArrayList<>();
+       String sql = "SELECT  m.idMateria, m.nombre, m.año" +
+                    "FROM materias m JOIN inscripcion i on" +
+                    "( m.idMateria = i.idmateria )" +
+                    "where inscripcion.idAlumno = ?;";       
+        try {
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            
+            ResultSet rs = ps.executeQuery();
+            
+            
+            while(rs.next())
+                    {
+                     Materia materia = new Materia(); 
+                       materia.setIdMateria(rs.getInt("idMateria"));
+                       materia.setNombre(rs.getString("nombre"));
+                       materia.setAnioMateria(rs.getInt("año"));
+                       materia.setActivo(true); 
+                    
+                    
+                       materias.add(materia);
+                    }
+                        ps.close();
+            }  catch (SQLException ex)  
+                    {
+                     JOptionPane.showMessageDialog(null,"error" + ex.getMessage());
+                    
+                    }
+        
+        return materias;
+     
+     
+      }
 }
