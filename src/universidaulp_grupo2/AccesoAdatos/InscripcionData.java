@@ -20,7 +20,7 @@ import universidaulp_grupo2.Entidades.Inscripcion;
 import universidaulp_grupo2.Entidades.Materia;
 import universidaulp_grupo2.AccesoADatos.Conexion;
 
-/**
+/*
  *
  * @author Ivan
  */
@@ -32,7 +32,6 @@ public class InscripcionData {
     public InscripcionData(){
         con= Conexion.getConexion();
         }
-    
     
     public void guardarInscripcion(Inscripcion insc){
         
@@ -228,7 +227,7 @@ public class InscripcionData {
         return alumnosMateria;       
    }
   
-   public List<Materia> obternerMateriasNOCursadas (int idAlumno){  
+   public List<Materia> obternerMateriasNOCursadas(int idAlumno){  
          
        ArrayList<Materia>materias = new ArrayList<>();
        
@@ -268,7 +267,7 @@ public class InscripcionData {
      
       }
    
-   public List<Materia> obternerMateriasCursadas (int idAlumno){  
+   public List<Materia> obternerMateriasCursadas(int idAlumno){  
          
        ArrayList<Materia>materias = new ArrayList<>();
        String sql = "SELECT  inscripcion.idMateria, nombre, año FROM inscripcion"              
