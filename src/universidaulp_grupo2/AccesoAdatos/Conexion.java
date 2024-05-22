@@ -27,16 +27,10 @@ public class Conexion {
              try {
                  Class.forName("org.mariadb.jdbc.Driver");
 
-<<<<<<< Updated upstream
+
                  con = DriverManager.getConnection(URL + BD ,USUARIO,PASS);
 
-                 con = DriverManager.getConnection(URL + BD,USUARIO,PASS);
-=======
-                 con = DriverManager.getConnection(URL ,USUARIO,PASS);
-
-                 con = DriverManager.getConnection(URL,USUARIO,PASS);
->>>>>>> Stashed changes
-
+           
 
                 JOptionPane.showMessageDialog(null,"Conexion establecida con exito");
 
