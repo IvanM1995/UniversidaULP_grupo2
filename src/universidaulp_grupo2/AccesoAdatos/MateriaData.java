@@ -13,7 +13,7 @@ import universidaulp_grupo2.AccesoADatos.Conexion;
 import universidaulp_grupo2.Entidades.Materia;
 /**
  *
- * @author Javier
+ * //@author Javier
  */
 public class MateriaData {
     private Connection con= null;
