@@ -129,7 +129,7 @@ public class InscripcionData {
         
          ArrayList<Inscripcion> cursadas = new ArrayList<>();
             
-            String sql="SELECT * FROM inscripcion WHERE idAlimno = ?";
+            String sql="SELECT * FROM inscripcion WHERE idAlumno = ?";
             
         try {
             PreparedStatement ps=con.prepareStatement(sql);

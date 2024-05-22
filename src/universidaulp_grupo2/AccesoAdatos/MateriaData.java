@@ -58,7 +58,7 @@ public class MateriaData {
                 materia=new Materia();
                 materia.setIdMateria(id);
                 materia.setNombre(rs.getString("nombre"));
-                materia.setAnioMateria(rs.getInt("anio"));
+                materia.setAnioMateria(rs.getInt("año"));
                 materia.isActivo();
             } else {
                 JOptionPane.showMessageDialog(null, "No existe la materia");
@@ -114,15 +114,15 @@ public class MateriaData {
     public List<Materia> listarMateria(){
         List<Materia> materias = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM materia WHERE activo = 1 ";
+            String sql = "SELECT * FROM materia WHERE estado = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
              while (rs.next()) {
                 Materia materia = new Materia();
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
-                materia.setAnioMateria(rs.getInt("anio"));
-                materia.setActivo(rs.getBoolean("activo"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setActivo(rs.getBoolean("estado"));
                 materias.add(materia);
              }
         ps.close();

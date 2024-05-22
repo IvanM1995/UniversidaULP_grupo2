@@ -11,7 +11,9 @@ import java.time.LocalDate;
 import java.time.Month;
 import universidaulp_grupo2.AccesoADatos.Conexion;
 import universidaulp_grupo2.AccesoAdatos.AlumnoData;
+import universidaulp_grupo2.AccesoAdatos.MateriaData;
 import universidaulp_grupo2.Entidades.Alumno;
+import universidaulp_grupo2.Entidades.Materia;
 
 /**
  *
@@ -38,7 +40,7 @@ public class UniversidaULP_grupo2 {
 //        alum.guardarAlumno(juan);
 //        //alum.eliminarAlumno(0);
 //        //alum.buscarAlumno(0);
-//            alum.listarAlumnos();
+//        alum.listarAlumnos();
 //       
 //        Alumno nestor=new Alumno(4196454, "Nestor", "Diaz", LocalDate.of(1999, 8, 11), true);
 //        AlumnoData alun = new AlumnoData();
@@ -78,6 +80,30 @@ public class UniversidaULP_grupo2 {
 //            System.out.println(alumno.getfechaN());
 //            System.out.println("");
 //        }
+//
+    //Materia mate =new Materia("matematica", 2, true);
+    //MateriaData mat = new MateriaData();
+   // mat.guardarMateria(mate);
+
+     // Materia leng =new Materia("lengua", 3, true);
+     
+     //mat.guardarMateria(leng);
+     //mat.buscarMateria(1);
+     
+    // Materia ter =new Materia(2,"dibujo", 2, true);
+     
+     //mat.modificarMateria(ter);
+     //mat.eliminarMateria(1);
+     //mat.listarMateria();
+     
+     
+     
+     
+       
+       
+
+        
+
   }
     
     

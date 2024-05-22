@@ -14,7 +14,7 @@ import java.sql.Connection;
 public class Conexion {
     
     private static final String URL = "jdbc:mariadb://localhost/";
-   // private static final String BD = "universidadgp2";
+    private static final String BD = "universidadgp2";
     private static final String USUARIO = "root";
     private static final String PASS = "";
     private static  Connection con; 
@@ -26,11 +26,11 @@ public class Conexion {
          if(con == null){
              try {
                  Class.forName("org.mariadb.jdbc.Driver");
-<<<<<<< Updated upstream
-                 con = DriverManager.getConnection(URL ,USUARIO,PASS);
-=======
-                 con = DriverManager.getConnection(URL,USUARIO,PASS);
->>>>>>> Stashed changes
+
+                 con = DriverManager.getConnection(URL + BD ,USUARIO,PASS);
+
+                 con = DriverManager.getConnection(URL + BD,USUARIO,PASS);
+
 
                 JOptionPane.showMessageDialog(null,"Conexion establecida con exito");
 
