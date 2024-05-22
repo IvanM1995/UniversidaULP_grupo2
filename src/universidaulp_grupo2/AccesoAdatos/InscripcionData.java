@@ -5,8 +5,7 @@
  */
 package universidaulp_grupo2.AccesoAdatos;
 
-import con.mysql.jdbc.Statement;
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -124,6 +123,47 @@ public class InscripcionData {
             
         return cursadas;
     
+        
+    }
+    
+    public List<Inscripcion>obtenerInscripcionesPorAlumno(int idAlumno){
+        
+         ArrayList<Inscripcion> cursadas = new ArrayList<>();
+            
+            String sql="SELECT * FROM inscripcion WHERE idAlimno = ?";
+            
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(idAlumno, idAlumno);
+            ResultSet rs=ps.executeQuery();
+            
+            while(rs.next()){
+                
+                Inscripcion insc = new Inscripcion();
+                insc.setIdInscripcion(rs.getInt("idInscripto"));
+                Alumno alum = ad.buscarAlumno(rs.getInt("idAlumno"));
+                Materia mat = md.buscarMateria(rs.getInt("idMateria"));
+                insc.setAlumno(alum);
+                insc.setMateria(mat);
+                insc.setNota(rs.getInt("nota"));
+                cursadas.add(insc);
+                
+            }
+            
+            ps.close();
+            
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
+            
+            Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        return cursadas;
+        
+        
+        
+        
         
     }
     
