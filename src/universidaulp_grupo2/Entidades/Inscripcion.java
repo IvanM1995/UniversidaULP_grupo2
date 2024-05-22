@@ -5,9 +5,6 @@
  */
 package universidaulp_grupo2.Entidades;
 
-import universidaulp_grupo2.Entidades.Materia;
-import universidaulp_grupo2.Entidades.Alumno;
-
 /**
  *
  * @author Javi
