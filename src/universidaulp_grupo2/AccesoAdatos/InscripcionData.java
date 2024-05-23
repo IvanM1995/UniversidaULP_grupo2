@@ -78,6 +78,7 @@ public class InscripcionData {
                 
                 JOptionPane.showMessageDialog(null, "La nota se actualizo con exito");
             }
+            ps.close();
             
         } catch (SQLException ex) {
             
@@ -133,7 +134,7 @@ public class InscripcionData {
             
         try {
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(idAlumno, idAlumno);
+            ps.setInt(1, idAlumno);
             ResultSet rs=ps.executeQuery();
             
             while(rs.next()){
@@ -193,8 +194,8 @@ public class InscripcionData {
          
        ArrayList<Alumno> alumnosMateria = new ArrayList<>();
        String sql =  "SELECT  a.idAlumno, dni, apellido, nombre, fechaN,estado" 
-                   + "FROM inscripcion i , alumno a "
-                   + "WHERE i.idAlumno = a.idAlumno AND idMateria = ? AND a.estado = 1" ;
+                   + " FROM inscripcion i , alumnos a "
+                   + " WHERE i.idAlumno = a.idAlumno AND idMateria = ? AND a.estado = 1" ;
                         
         try {
             
@@ -232,7 +233,7 @@ public class InscripcionData {
        ArrayList<Materia>materias = new ArrayList<>();
        
        String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria not in"
-               + "(SELECT idMateria From inscripcion WHERE indAlumno = ?)";
+               + "(SELECT idMateria From inscripcion WHERE idAlumno = ?)";
         try {
             
             PreparedStatement ps = con.prepareStatement(sql);
@@ -267,12 +268,12 @@ public class InscripcionData {
      
       }
    
-   public List<Materia> obternerMateriasCursadas(int idAlumno){  
+   public List<Materia> obtenerMateriasCursadas(int idAlumno){  
          
        ArrayList<Materia>materias = new ArrayList<>();
-       String sql = "SELECT  inscripcion.idMateria, nombre, año FROM inscripcion"              
-                   + "materia JOIN inscripcion.idMateria = materia.idMateria" +
-                    "AND inscripcion.idAlumno = ?;";       
+       String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion,"              
+                    +" materia WHERE inscripcion.idMateria = materia.idMateria"
+                    +" AND inscripcion.idAlumno = ?";    
         try {
             
             PreparedStatement ps = con.prepareStatement(sql);
