@@ -66,6 +66,8 @@ public class FormInscripcion1 extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jtTabla2 = new javax.swing.JTable();
 
+        setClosable(true);
+
         jInternalFrame1.setClosable(true);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -355,14 +357,17 @@ public class FormInscripcion1 extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Seleccione un Alumno");
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("LISTADO DE MATERIAS");
 
+        jRadioButton5.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton5.setText("Materias inscriptas");
 
+        jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton6.setText("Materias No inscriptas");
 
         jButton7.setText("Inscribir");
@@ -575,7 +580,6 @@ public class FormInscripcion1 extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JComboBox<String> jcListaAlumnos;
     private javax.swing.JComboBox<String> jcListaAlumnos1;
     private javax.swing.JComboBox<String> jcListaAlumnos2;
     private javax.swing.JComboBox<String> jcListaAlumnos3;

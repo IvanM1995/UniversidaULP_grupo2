@@ -102,6 +102,11 @@ public class Menu extends javax.swing.JFrame {
         jmConsultas.setText("Consultas");
 
         jMenuItem4.setText("Alumnos por Materia");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jMenuItem4);
 
         jMenuBar1.add(jmConsultas);
@@ -156,6 +161,11 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         mostrarPestaña(new FormInscripcion1());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        mostrarPestaña(new FormConsulta());
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
