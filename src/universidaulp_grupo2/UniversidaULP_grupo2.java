@@ -116,17 +116,14 @@ public class UniversidaULP_grupo2 {
 //      id.actulizarNota(11, 2, 7);
 //      id.borrarInscripcion(11, 2);
         
-////
+
 //        for(Inscripcion insc:id.obtenerInscripciones()){
 //            
 //            System.out.println("id" + insc.getIdInscripcion());
 //            System.out.println("Apellido" + insc.getAlumno().getApellido());
 //            System.out.println("Materia" + insc.getMateria().getNombre());
 //         
-//        }
-
-//
-//      
+//        }  
 //             for(Materia materia:id.obtenerMateriasCursadas(11)){
 //                 
 //                 System.out.println("nombre" + materia.getNombre());
@@ -148,9 +145,10 @@ public class UniversidaULP_grupo2 {
 //            for(Alumno alumno:id.ObtenerAlumnosxMateria(id2)){
 //                System.out.println(" Nombre: " + alumno.getNombre());
 //                System.out.println("");
+//          
 //            }
                                 
     }
-    
+
     
 }
