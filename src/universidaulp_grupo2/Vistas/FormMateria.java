@@ -46,7 +46,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jbEliminar = new javax.swing.JButton();
         jbNuevo = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jyAño = new com.toedter.calendar.JYearChooser();
+        jcAño = new javax.swing.JComboBox<>();
 
         setClosable(true);
 
@@ -113,8 +113,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("FORMULARIO MATERIA");
 
-        jyAño.setMinimumSize(new java.awt.Dimension(60, 22));
-        jyAño.setPreferredSize(new java.awt.Dimension(60, 22));
+        jcAño.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Año", "2 Año", "3 Año", "4 Año", "5 Año" }));
 
         jDesktopPane1.setLayer(jtCodigo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -129,7 +128,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jbEliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbNuevo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jyAño, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jcAño, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -154,14 +153,14 @@ public class FormMateria extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3))
                         .addGap(25, 25, 25)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jrEstado)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jcAño, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jtMateria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                                     .addComponent(jtCodigo, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(30, 30, 30)
-                                .addComponent(jbBuscar))
-                            .addComponent(jrEstado)
-                            .addComponent(jyAño, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jbBuscar)))))
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -182,15 +181,15 @@ public class FormMateria extends javax.swing.JInternalFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(21, 21, 21)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jyAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(jcAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jrEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNuevo)
                     .addComponent(jbEliminar)
@@ -233,8 +232,8 @@ public class FormMateria extends javax.swing.JInternalFrame {
       try{
           String materia = jtMateria.getText();
           
-          int anio = jyAño.getYear();
-          Integer anio2 = Integer.value(jyAño);
+          
+          int anio = jcAño.getSelectedIndex();
           boolean estado = jrEstado.isSelected();
           if(materia.isEmpty()){
               JOptionPane.showMessageDialog(this, "No puede hacer campos vacios");
@@ -266,11 +265,11 @@ public class FormMateria extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         try{
-            Integer codigo = Integer.parseInt(jtCodigo.getText());
+            int codigo = Integer.parseInt(jtCodigo.getText());
             materiaNueva = matData.buscarMateria(codigo);
             if(materiaNueva != null){
                 jtMateria.setText(materiaNueva.getNombre());
-                jyAño.setToolTipText(String.valueOf(materiaNueva.getAnioMateria()));
+                jcAño.setSelectedIndex(materiaNueva.getAnioMateria());
                 jrEstado.setSelected(true);
             }
           }catch(NumberFormatException ex){
@@ -292,10 +291,10 @@ public class FormMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
+    private javax.swing.JComboBox<String> jcAño;
     private javax.swing.JRadioButton jrEstado;
     private javax.swing.JTextField jtCodigo;
     private javax.swing.JTextField jtMateria;
-    private com.toedter.calendar.JYearChooser jyAño;
     // End of variables declaration//GEN-END:variables
     public void limpiarCampos(){
          int currentYear = LocalDate.now().getYear();
