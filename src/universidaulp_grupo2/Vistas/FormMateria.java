@@ -5,16 +5,19 @@
 package universidaulp_grupo2.Vistas;
 
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import universidaulp_grupo2.AccesoAdatos.MateriaData;
+import universidaulp_grupo2.Entidades.Materia;
 
 /**
  *
  * @author Javier
  */
 public class FormMateria extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form FormMateria
-     */
+    
+    private MateriaData matData = new MateriaData();
+    private Materia materiaNueva = null;
+   
     public FormMateria() {
         initComponents();
        
@@ -36,14 +39,14 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jbBuscar = new javax.swing.JButton();
-        jtNombre = new javax.swing.JTextField();
+        jtMateria = new javax.swing.JTextField();
         jrEstado = new javax.swing.JRadioButton();
         jbSalir = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
         jbNuevo = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jyAño = new com.toedter.calendar.JYearChooser();
 
         setClosable(true);
 
@@ -59,7 +62,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jLabel1.setText("Código");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Materia");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Año");
@@ -68,6 +71,11 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jLabel4.setText("Estado");
 
         jbBuscar.setText("BUSCAR");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
 
         jrEstado.setForeground(new java.awt.Color(255, 255, 255));
         jrEstado.setText("Activo");
@@ -80,8 +88,18 @@ public class FormMateria extends javax.swing.JInternalFrame {
         });
 
         jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
 
         jbNuevo.setText("Nuevo");
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -95,8 +113,8 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("FORMULARIO MATERIA");
 
-        jYearChooser1.setMinimumSize(new java.awt.Dimension(60, 22));
-        jYearChooser1.setPreferredSize(new java.awt.Dimension(60, 22));
+        jyAño.setMinimumSize(new java.awt.Dimension(60, 22));
+        jyAño.setPreferredSize(new java.awt.Dimension(60, 22));
 
         jDesktopPane1.setLayer(jtCodigo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -104,14 +122,14 @@ public class FormMateria extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jtNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jtMateria, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jrEstado, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbGuardar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbEliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbNuevo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jYearChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jyAño, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -138,12 +156,12 @@ public class FormMateria extends javax.swing.JInternalFrame {
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                    .addComponent(jtMateria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                                     .addComponent(jtCodigo, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(30, 30, 30)
                                 .addComponent(jbBuscar))
                             .addComponent(jrEstado)
-                            .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jyAño, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -163,11 +181,11 @@ public class FormMateria extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jyAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -198,8 +216,8 @@ public class FormMateria extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-        // TODO add your handling code here:
-        limpiar();
+       limpiarCampos();
+       materiaNueva = null;
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -211,6 +229,56 @@ public class FormMateria extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtCodigoActionPerformed
 
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+      try{
+          String materia = jtMateria.getText();
+          
+          int anio = jyAño.getYear();
+          Integer anio2 = Integer.value(jyAño);
+          boolean estado = jrEstado.isSelected();
+          if(materia.isEmpty()){
+              JOptionPane.showMessageDialog(this, "No puede hacer campos vacios");
+          }
+          if(materiaNueva != null){
+              materiaNueva = new Materia (materia,anio,estado);
+              matData.guardarMateria(materiaNueva);
+          }else{
+              materiaNueva.setNombre(materia);
+              materiaNueva.setAnioMateria(anio);
+              materiaNueva.setActivo(estado);
+              matData.modificarMateria(materiaNueva);
+          }
+          
+      }catch(NumberFormatException ex){
+          
+      }
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        if(materiaNueva!=null){
+           matData.eliminarMateria(materiaNueva.getIdMateria());
+           materiaNueva = null;
+        }else{
+            JOptionPane.showMessageDialog(this,"Debe seleccionar una materia");
+        }
+        
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        try{
+            Integer codigo = Integer.parseInt(jtCodigo.getText());
+            materiaNueva = matData.buscarMateria(codigo);
+            if(materiaNueva != null){
+                jtMateria.setText(materiaNueva.getNombre());
+                jyAño.setToolTipText(String.valueOf(materiaNueva.getAnioMateria()));
+                jrEstado.setSelected(true);
+            }
+          }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null,"Debe ingresar un numero valido" + ex.getLocalizedMessage());                   
+              }
+            
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -219,7 +287,6 @@ public class FormMateria extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbGuardar;
@@ -227,12 +294,13 @@ public class FormMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbSalir;
     private javax.swing.JRadioButton jrEstado;
     private javax.swing.JTextField jtCodigo;
-    private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jtMateria;
+    private com.toedter.calendar.JYearChooser jyAño;
     // End of variables declaration//GEN-END:variables
-    public void limpiar(){
+    public void limpiarCampos(){
          int currentYear = LocalDate.now().getYear();
         jtCodigo.setText(null);
-        jtNombre.setText(null);
+        jtMateria.setText(null);
         //jyAnio.setYear(currentYear);
         jrEstado.setSelected(false);
     }
