@@ -116,6 +116,12 @@ public class FormAlumno extends javax.swing.JInternalFrame {
             }
         });
 
+        jtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtApellidoActionPerformed(evt);
+            }
+        });
+
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtNombreActionPerformed(evt);
@@ -268,7 +274,39 @@ public class FormAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // TODO add your handling code here:
+         
+        try{
+            
+          Integer dni =Integer.parseInt(jtDni.getText());
+          String apellido = jtApellido.getText();
+          String nombre = jtNombre.getText();
+          
+          if(nombre.isEmpty() || apellido.isEmpty()){
+             JOptionPane.showMessageDialog(null, "No debe haber campos vacios");
+              return;
+          }
+          java.util.Date fecha = jdFechaN.getDate();
+          if(fecha==null){
+              JOptionPane.showConfirmDialog(this, "Debe seleccionar una Fecha de nacimiento");
+              return;
+          }
+          LocalDate fechaN = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+          boolean estado = jrEstado.isSelected();
+        if(AlumnoActual==null){
+            AlumnoActual = new Alumno (dni,apellido,nombre,fechaN,estado);           
+            alumData.guardarAlumno(AlumnoActual);
+        }else{
+            AlumnoActual.setDni(dni);
+            AlumnoActual.setApellido(apellido);
+            AlumnoActual.setNombre(nombre);
+            AlumnoActual.setfechaN(fechaN);
+            alumData.modificarAlumnos(AlumnoActual);
+        }  
+            }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un DNI valido");
+                
+        }
+        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDniActionPerformed
@@ -287,37 +325,28 @@ public class FormAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        
-        try{
-            
-          Integer dni =Integer.parseInt(jtDni.getText());
-          String apellido = jtApellido.getText();
-          String nombre = jtNombre.getText();
-          
-          if(nombre.isEmpty() || apellido.isEmpty()){
-             JOptionPane.showMessageDialog(null, "No debe haber campos vacios");
-              return;
-          }
-          java.util.Date fecha = jdFechaN.getDate();
-          LocalDate fechaN = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-          boolean estado = jrEstado.isSelected();
-        if(AlumnoActual==null){
-            AlumnoActual = new Alumno (apellido,nombre,dni,fechaN,estado);
-            alumData.guardarAlumno(AlumnoActual);
-        }else{
-            AlumnoActual.setDni(dni);
-            AlumnoActual.setApellido(apellido);
-            AlumnoActual.setNombre(nombre);
-            AlumnoActual.setfechaN(fechaN);
-            alumData.modificarAlumnos(AlumnoActual);
-        }  
-            }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(this,"Debe ingresar un DNI valido");
-                
+        try {
+            Integer dni = Integer.parseInt(jtDni.getText());
+            AlumnoActual = alumData.buscarAlumnoPorDni(dni);
+            if (AlumnoActual != null) {
+                jtApellido.setText(AlumnoActual.getApellido());
+                jtNombre.setText(AlumnoActual.getNombre());
+                jrEstado.setSelected(AlumnoActual.isEstado());
+                LocalDate lc = AlumnoActual.getfechaN();
+                java.util.Date date = java.util.Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                jdFechaN.setDate(date);
+
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero valido");
         }
         
         
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtApellidoActionPerformed
 
 private void limpiarCampos(){
     jtNombre.setText("");

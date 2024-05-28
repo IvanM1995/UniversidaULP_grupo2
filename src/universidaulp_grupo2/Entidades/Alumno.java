@@ -39,9 +39,7 @@ public class Alumno {
         this.estado = estado;
     }
 
-    public Alumno(String apellido, String nombre, Integer dni, LocalDate fechaN, boolean estado) {
-        
-    }
+   
 
     public int getIdAlumno() {
         return idAlumno;

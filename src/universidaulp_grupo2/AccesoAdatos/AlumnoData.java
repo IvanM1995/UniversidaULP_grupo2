@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,13 +31,21 @@ public class AlumnoData {
     public boolean guardarAlumno(Alumno alumno){
         boolean flag=false;
         
-        String sql = "INSERT INTO alumnos (dni,apellido, nombre, fechaN, estado) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO alumnos (dni ,apellido, nombre, fechaN, estado) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            ps.setDate(4, Date.valueOf(alumno.getfechaN())); //De localDate a Date 
+            
+            LocalDate fechaN = alumno.getfechaN();
+            if(fechaN!=null){
+                ps.setDate(4, Date.valueOf(fechaN));
+            }else{
+                ps.setNull(4, java.sql.Types.DATE);
+            }
+            
+            //ps.setDate(4, Date.valueOf(alumno.getfechaN())); //De localDate a Date 
             ps.setBoolean(5, alumno.isEstado()); // if reducido
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
