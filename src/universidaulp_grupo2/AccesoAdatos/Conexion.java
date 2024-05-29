@@ -13,7 +13,7 @@ import java.sql.Connection;
  */
 public class Conexion {
     
-    private static final String URL = "jdbc:mariadb://localhost:3308/";
+    private static final String URL = "jdbc:mariadb://localhost/";
     private static final String BD = "universidadgp2";
     private static final String USUARIO = "root";
     private static final String PASS = "";

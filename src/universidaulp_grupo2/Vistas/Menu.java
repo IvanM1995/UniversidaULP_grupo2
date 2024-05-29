@@ -171,8 +171,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-        mostrarPestaña(new FormConsulta());
+       escritorio.removeAll();
+        escritorio.repaint();
+        FormConsulta listaMateria = new FormConsulta();
+        listaMateria.setVisible(true);
+        listaMateria.getContentPane().setBackground(Color.white);
+        escritorio.add(listaMateria);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**

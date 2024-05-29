@@ -4,18 +4,47 @@
  */
 package universidaulp_grupo2.Vistas;
 
+import java.awt.event.ItemEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import universidaulp_grupo2.AccesoAdatos.AlumnoData;
+import universidaulp_grupo2.AccesoAdatos.InscripcionData;
+import universidaulp_grupo2.AccesoAdatos.MateriaData;
+import universidaulp_grupo2.Entidades.Alumno;
+import universidaulp_grupo2.Entidades.Inscripcion;
+import universidaulp_grupo2.Entidades.Materia;
+
 /**
  *
  * @author Javier
  */
 public class FormConsulta extends javax.swing.JInternalFrame {
+private MateriaData matData = new MateriaData();
+    private Materia materiaActual = null;
+    private ArrayList<Alumno> listaA;
+    private InscripcionData inscData;
 
-    /**
-     * Creates new form FormConsulta
-     */
+    private ArrayList<Materia> listaM;
+    private DefaultTableModel modelo;
+    private MateriaData mData;
+    private AlumnoData aData;
+    
+    
     public FormConsulta() {
         initComponents();
+        
+        aData = new AlumnoData();
+        mData = new MateriaData();
+        listaM = (ArrayList<Materia>) mData.listarMateria();
+        inscData = new InscripcionData();
+        modelo = new DefaultTableModel();
+
+        cargaMaterias();
+        CabeceraMateria();
+        llenarTablaMateria();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,7 +108,11 @@ public class FormConsulta extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jtTabla);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -104,15 +137,13 @@ public class FormConsulta extends javax.swing.JInternalFrame {
                 .addGap(64, 64, 64))
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(19, 19, 19)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -156,9 +187,59 @@ public class FormConsulta extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+           if (evt.getStateChange() == ItemEvent.SELECTED) {
+            limpiarTabla();
+            llenarTablaMateria();
+        }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+private void cargaMaterias() {
+
+        List<Materia> todo = listaM;
+        for (Materia item : todo) {
+            jComboBox1.addItem(item);
+        }
+    }
+
+
+
+    private void llenarTablaMateria() {
+       
+        try{
+         jComboBox1.getSelectedItem();
+        Materia mat = (Materia) jComboBox1.getSelectedItem();
+        List<Alumno> alumnos = inscData.ObtenerAlumnosxMateria(mat.getIdMateria());
+        for (Alumno alu : alumnos) {
+            modelo.addRow(new Object[]{alu.getIdAlumno(), alu.getDni(), alu.getApellido(), alu.getNombre()});
+        }
+        }catch(NullPointerException ex){}
+    }
+
+private void limpiarTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) jtTabla.getModel();
+        modelo.setRowCount(0);
+    }
+
+ private void CabeceraMateria() {
+
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add(" ID: ");
+        filaCabecera.add(" DNI: ");
+        filaCabecera.add(" Apellido: ");
+        filaCabecera.add(" Nombre: ");
+
+        for (Object it : filaCabecera) {
+
+            modelo.addColumn(it);
+
+        }
+        jtTabla.setModel(modelo);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Materia> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
