@@ -63,13 +63,13 @@ public class InscripcionData {
         
     }
     
-    public void actulizarNota( int idAlumno, int idMateria, int nota ){
+    public void actulizarNota( int idAlumno, int idMateria, double nota ){
             
         try {
             String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? and idMateria = ?";
             
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(1, nota);
+            ps.setDouble(1, nota);
             ps.setInt(2, idAlumno);
             ps.setInt(3, idMateria);
             

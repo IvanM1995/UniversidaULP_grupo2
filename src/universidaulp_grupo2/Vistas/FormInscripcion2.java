@@ -215,7 +215,7 @@ public class FormInscripcion2 extends javax.swing.JInternalFrame {
 
             int idMateria = (int) modelo.getValueAt(fila, 0);
             int idAlumno = alumnoSeleccionado.getIdAlumno();
-            int nota = Integer.parseInt((String) modelo.getValueAt(fila, 2));
+            double nota = Double.parseDouble((String) modelo.getValueAt(fila, 2));
 
             if (nota > 10 || nota < 0) {
                 JOptionPane.showMessageDialog(this, "Ingrese una nota correcta.");
@@ -230,7 +230,10 @@ public class FormInscripcion2 extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Ingrese una fila para guardar la nota.");
         } catch (ClassCastException ex) {
             JOptionPane.showMessageDialog(this, "Confirme la nota a guardar.");
-        }
+            
+        }catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Ingrese una nota válida.");
+    }
         
     }//GEN-LAST:event_jbGuardarActionPerformed
 
