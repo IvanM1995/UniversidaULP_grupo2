@@ -238,13 +238,13 @@ public class FormInscripcion2 extends javax.swing.JInternalFrame {
        dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
-   //--------------Limpiar Tabla-----------------------------------
+
     private void limpiarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) jtTabla.getModel();
         modelo.setRowCount(0);
     }
 
-    //--------------Cargar Notas-----------------------------------
+
     private void cargaNotas() {
 
         for (Alumno item : listaA) {
@@ -269,7 +269,7 @@ public class FormInscripcion2 extends javax.swing.JInternalFrame {
 
     }
 
-    //--------------Llenar Tabla-----------------------------------
+
     private void llenarTabla() {
        
         try{
