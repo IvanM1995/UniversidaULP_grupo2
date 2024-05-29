@@ -1,7 +1,11 @@
 
 package universidaulp_grupo2.Vistas;
 
+import java.awt.Color;
+import java.util.List;
 import javax.swing.JInternalFrame;
+import universidaulp_grupo2.AccesoAdatos.AlumnoData;
+import universidaulp_grupo2.Entidades.Alumno;
 
 /**
  *
@@ -153,8 +157,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jmFormularioMateriaActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        mostrarPestaña(new FormInscripcion2());
+                escritorio.removeAll();
+       escritorio.repaint();
+        FormInscripcion2 carg = new FormInscripcion2();
+        carg.setVisible(true);
+        carg.getContentPane().setBackground(Color.white);
+        escritorio.add(carg);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

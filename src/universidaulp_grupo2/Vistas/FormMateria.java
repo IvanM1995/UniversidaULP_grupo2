@@ -238,7 +238,7 @@ public class FormMateria extends javax.swing.JInternalFrame {
           if(materia.isEmpty()){
               JOptionPane.showMessageDialog(this, "No puede hacer campos vacios");
           }
-          if(materiaNueva != null){
+          if(materiaNueva == null){
               materiaNueva = new Materia (materia,anio,estado);
               matData.guardarMateria(materiaNueva);
           }else{
